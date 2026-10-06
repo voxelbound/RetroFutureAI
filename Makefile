@@ -8,14 +8,15 @@ TEST = test_inference
 
 all: $(APP)
 
-$(APP): src/main.c src/inference.c src/inference.h
-	$(CC) $(CFLAGS) -Isrc src/main.c src/inference.c -o $(APP)
+$(APP): src/main.c src/inference.c include/retrofutureai.h
+	$(CC) $(CFLAGS) -Iinclude src/main.c src/inference.c -o $(APP)
 
-$(TEST): tests/test_inference.c src/inference.c src/inference.h
-	$(CC) $(CFLAGS) -Isrc tests/test_inference.c src/inference.c -o $(TEST)
+$(TEST): tests/test_inference.c src/inference.c include/retrofutureai.h
+	$(CC) $(CFLAGS) -Iinclude tests/test_inference.c src/inference.c -o $(TEST)
 
 test: $(TEST)
 	./$(TEST)
 
 clean:
 	rm -f $(APP) $(TEST)
+

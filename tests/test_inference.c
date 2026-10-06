@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#include "../src/inference.h"
+#include "retrofutureai.h"
 
 static void test_signal_vector(void)
 {

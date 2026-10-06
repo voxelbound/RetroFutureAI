@@ -1,5 +1,5 @@
-#ifndef RETROFUTUREAI_INFERENCE_H
-#define RETROFUTUREAI_INFERENCE_H
+#ifndef RETROFUTUREAI_H
+#define RETROFUTUREAI_H
 
 #include <stdint.h>
 
@@ -15,3 +15,4 @@ rf_result_t rf_infer(const int8_t input[RF_INPUTS]);
 const char *rf_class_name(int class_id);
 
 #endif
+
