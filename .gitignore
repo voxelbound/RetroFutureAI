@@ -4,3 +4,4 @@ test_inference
 *.obj
 *.exe
 .DS_Store
+test_dense
