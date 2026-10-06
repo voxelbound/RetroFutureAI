@@ -5,3 +5,4 @@ test_inference
 *.exe
 .DS_Store
 test_dense
+test_relu

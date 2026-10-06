@@ -20,6 +20,7 @@ void rf_dense_i8(
     size_t input_size,
     size_t output_size);
 
+void rf_relu_i32(int32_t *values, size_t count);
 rf_result_t rf_infer(const int8_t input[RF_INPUTS]);
 const char *rf_class_name(int class_id);
 
