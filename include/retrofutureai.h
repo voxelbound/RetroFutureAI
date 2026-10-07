@@ -28,6 +28,7 @@ void rf_requantize_i32_to_i8(
     size_t count,
     unsigned int shift);
 
+int rf_argmax_i32(const int32_t *values, size_t count);
 rf_result_t rf_infer(const int8_t input[RF_INPUTS]);
 const char *rf_class_name(int class_id);
 

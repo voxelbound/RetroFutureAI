@@ -7,3 +7,4 @@ test_inference
 test_dense
 test_relu
 test_requantize
+test_argmax
