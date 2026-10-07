@@ -30,7 +30,7 @@ $(TEST_REQUANTIZE): tests/test_requantize.c src/runtime/requantize.c include/ret
 $(TEST_ARGMAX): tests/test_argmax.c src/runtime/argmax.c include/retrofutureai.h
 	$(CC) $(CFLAGS) -Iinclude tests/test_argmax.c src/runtime/argmax.c -o $(TEST_ARGMAX)
 
-test: $(TEST_INFERENCE) $(TEST_DENSE) $(TEST_RELU) $(TEST_REQUANTIZE)
+test: $(TEST_INFERENCE) $(TEST_DENSE) $(TEST_RELU) $(TEST_REQUANTIZE) $(TEST_ARGMAX) 
 	./$(TEST_INFERENCE)
 	./$(TEST_DENSE)
 	./$(TEST_RELU)
