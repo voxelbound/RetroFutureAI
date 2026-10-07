@@ -6,3 +6,4 @@ test_inference
 .DS_Store
 test_dense
 test_relu
+test_requantize

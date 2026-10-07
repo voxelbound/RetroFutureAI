@@ -5,6 +5,7 @@ APP = retrofutureai
 TEST_INFERENCE = test_inference
 TEST_DENSE = test_dense
 TEST_RELU = test_relu
+TEST_REQUANTIZE = test_requantize
 
 .PHONY: all test clean
 
@@ -22,11 +23,16 @@ $(TEST_DENSE): tests/test_dense.c src/runtime/dense.c include/retrofutureai.h
 $(TEST_RELU): tests/test_relu.c src/runtime/relu.c include/retrofutureai.h
 	$(CC) $(CFLAGS) -Iinclude tests/test_relu.c src/runtime/relu.c -o $(TEST_RELU)
 
-test: $(TEST_INFERENCE) $(TEST_DENSE) $(TEST_RELU)
+$(TEST_REQUANTIZE): tests/test_requantize.c src/runtime/requantize.c include/retrofutureai.h
+	$(CC) $(CFLAGS) -Iinclude tests/test_requantize.c src/runtime/requantize.c -o $(TEST_REQUANTIZE)
+
+test: $(TEST_INFERENCE) $(TEST_DENSE) $(TEST_RELU) $(TEST_REQUANTIZE)
 	./$(TEST_INFERENCE)
 	./$(TEST_DENSE)
 	./$(TEST_RELU)
+	./$(TEST_REQUANTIZE)
 
 clean:
-	rm -f $(APP) $(TEST_INFERENCE) $(TEST_DENSE) $(TEST_RELU)
+	rm -f $(APP) $(TEST_INFERENCE) $(TEST_DENSE) $(TEST_RELU) $(TEST_REQUANTIZE)
+
 
