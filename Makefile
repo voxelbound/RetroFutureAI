@@ -12,11 +12,11 @@ TEST_ARGMAX = test_argmax
 
 all: $(APP)
 
-$(APP): src/main.c src/inference.c include/retrofutureai.h
-	$(CC) $(CFLAGS) -Iinclude src/main.c src/inference.c -o $(APP)
+$(APP): src/main.c src/inference.c src/runtime/dense.c src/runtime/argmax.c include/retrofutureai.h
+	$(CC) $(CFLAGS) -Iinclude src/main.c src/inference.c src/runtime/dense.c src/runtime/argmax.c -o $(APP)
 
-$(TEST_INFERENCE): tests/test_inference.c src/inference.c include/retrofutureai.h
-	$(CC) $(CFLAGS) -Iinclude tests/test_inference.c src/inference.c -o $(TEST_INFERENCE)
+$(TEST_INFERENCE): tests/test_inference.c src/inference.c src/runtime/dense.c src/runtime/argmax.c include/retrofutureai.h
+	$(CC) $(CFLAGS) -Iinclude tests/test_inference.c src/inference.c src/runtime/dense.c src/runtime/argmax.c -o $(TEST_INFERENCE)
 
 $(TEST_DENSE): tests/test_dense.c src/runtime/dense.c include/retrofutureai.h
 	$(CC) $(CFLAGS) -Iinclude tests/test_dense.c src/runtime/dense.c -o $(TEST_DENSE)

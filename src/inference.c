@@ -1,3 +1,5 @@
+#include <stdint.h>
+
 #include "retrofutureai.h"
 
 /*
@@ -13,7 +15,7 @@ static const int8_t WEIGHTS[RF_CLASSES][RF_INPUTS] = {
     {  1, -2,  2,  7 }   /* idle   */
 };
 
-static const int16_t BIAS[RF_CLASSES] = {
+static const int32_t BIAS[RF_CLASSES] = {
     0, 0, 0
 };
 
@@ -26,25 +28,16 @@ static const char *CLASS_NAMES[RF_CLASSES] = {
 rf_result_t rf_infer(const int8_t input[RF_INPUTS])
 {
     rf_result_t result;
-    int c;
-    int i;
 
-    for (c = 0; c < RF_CLASSES; ++c) {
-        int32_t acc = BIAS[c];
+    rf_dense_i8(
+        input,
+        &WEIGHTS[0][0],
+        BIAS,
+        result.score,
+        RF_INPUTS,
+        RF_CLASSES);
 
-        for (i = 0; i < RF_INPUTS; ++i) {
-            acc += (int32_t)input[i] * (int32_t)WEIGHTS[c][i];
-        }
-
-        result.score[c] = acc;
-    }
-
-    result.best_class = 0;
-    for (c = 1; c < RF_CLASSES; ++c) {
-        if (result.score[c] > result.score[result.best_class]) {
-            result.best_class = c;
-        }
-    }
+    result.best_class = rf_argmax_i32(result.score, RF_CLASSES);
 
     return result;
 }
@@ -57,3 +50,4 @@ const char *rf_class_name(int class_id)
 
     return CLASS_NAMES[class_id];
 }
+
