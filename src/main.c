@@ -3,6 +3,12 @@
 
 #include "retrofutureai.h"
 
+/*
+ * Minimal host-side executable for the synthetic classifier.
+ *
+ * Keeping the demo small makes it useful as a quick end-to-end sanity check:
+ * fixed input -> runtime inference -> scores -> class name.
+ */
 int main(void)
 {
     const int8_t input[RF_INPUTS] = { 8, 2, -3, 1 };

@@ -3,6 +3,12 @@
 
 #include "retrofutureai.h"
 
+/*
+ * Find the index of the largest int32 value.
+ *
+ * The comparison uses '>' rather than '>=' deliberately, so equal values keep
+ * the first maximum. That makes tie behavior deterministic across targets.
+ */
 int rf_argmax_i32(const int32_t *values, size_t count)
 {
     size_t i;
@@ -22,4 +28,3 @@ int rf_argmax_i32(const int32_t *values, size_t count)
 
     return (int)best;
 }
-

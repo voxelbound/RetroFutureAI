@@ -8,6 +8,9 @@
  * The model is deliberately compiled into the binary. This keeps the first
  * experiment focused on the inference path rather than file formats or model
  * loading.
+ *
+ * This is a hand-written demo model, not a trained neural network. Its purpose
+ * is to exercise the runtime API before learned weights are introduced.
  */
 static const int8_t WEIGHTS[RF_CLASSES][RF_INPUTS] = {
     {  8,  3, -2,  1 },  /* signal */
@@ -25,6 +28,12 @@ static const char *CLASS_NAMES[RF_CLASSES] = {
     "idle"
 };
 
+/*
+ * Run the current synthetic classifier.
+ *
+ * The dense operator produces one int32 score per class. Argmax then converts
+ * those raw scores into the selected class index.
+ */
 rf_result_t rf_infer(const int8_t input[RF_INPUTS])
 {
     rf_result_t result;
@@ -42,6 +51,9 @@ rf_result_t rf_infer(const int8_t input[RF_INPUTS])
     return result;
 }
 
+/*
+ * Convert a class index from the synthetic demo into a printable name.
+ */
 const char *rf_class_name(int class_id)
 {
     if (class_id < 0 || class_id >= RF_CLASSES) {
@@ -50,4 +62,3 @@ const char *rf_class_name(int class_id)
 
     return CLASS_NAMES[class_id];
 }
-
