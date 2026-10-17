@@ -8,3 +8,6 @@ test_dense
 test_relu
 test_requantize
 test_argmax
+.venv/
+__pycache__/
+data/generated/
